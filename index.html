@@ -3,31 +3,19 @@
 <head>
     <title>Love Battle</title>
 
-    <meta name="viewport"
-          content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-
     <style>
         * {
             box-sizing: border-box;
         }
 
-        html,
-        body {
-            width: 100%;
-            height: 100%;
-        }
-
         body {
             margin: 0;
+            height: 100vh;
             background: #080812;
             color: white;
             font-family: Arial, sans-serif;
             overflow: hidden;
         }
-
-        /* =========================
-           TITLE
-        ========================= */
 
         h1 {
             text-align: center;
@@ -36,74 +24,45 @@
             font-size: 34px;
         }
 
-        /* =========================
-           ARENA - PC
-        ========================= */
-
         .arena {
             position: absolute;
-
             width: 80%;
             max-width: 850px;
             height: 400px;
-
             left: 50%;
             top: 52%;
-
             transform: translate(-50%, -50%);
-
             border: 4px solid #ff65ae;
             border-radius: 15px;
-
-            background: linear-gradient(
-                #171727,
-                #0b0b14
-            );
-
+            background: linear-gradient(#171727, #0b0b14);
             box-shadow: 0 0 30px #ff65ae55;
-
             overflow: hidden;
         }
 
-        /* =========================
-           FLOOR
-        ========================= */
-
         .floor {
             position: absolute;
-
             bottom: 55px;
             left: 5%;
-
             width: 90%;
             height: 3px;
-
             background: #ff65ae;
             box-shadow: 0 0 10px #ff65ae;
         }
 
-        /* =========================
-           HP
-        ========================= */
-
+        /* HP */
         .hp {
             position: absolute;
-
             top: 20px;
-
             width: 180px;
             height: 18px;
-
             border: 2px solid white;
             border-radius: 10px;
-
             overflow: hidden;
         }
 
         .hpbar {
             height: 100%;
             width: 100%;
-
             transition: width 0.3s;
         }
 
@@ -123,15 +82,9 @@
             background: #ff4b6e;
         }
 
-        /* =========================
-           LABELS
-        ========================= */
-
         .label {
             position: absolute;
-
             top: 42px;
-
             font-size: 13px;
         }
 
@@ -143,16 +96,11 @@
             right: 25px;
         }
 
-        /* =========================
-           STICKMAN
-        ========================= */
-
+        /* STICKMAN */
         .stickman {
             position: absolute;
-
             width: 70px;
             height: 150px;
-
             bottom: 58px;
         }
 
@@ -166,39 +114,29 @@
 
         .head {
             position: absolute;
-
             width: 38px;
             height: 38px;
-
             border: 4px solid white;
             border-radius: 50%;
-
             left: 16px;
             top: 0;
         }
 
         .body {
             position: absolute;
-
             width: 4px;
             height: 65px;
-
             background: white;
-
             left: 34px;
             top: 38px;
         }
 
         .arm {
             position: absolute;
-
             width: 48px;
             height: 4px;
-
             background: white;
-
             top: 55px;
-
             transform-origin: left center;
         }
 
@@ -214,14 +152,10 @@
 
         .leg {
             position: absolute;
-
             width: 52px;
             height: 4px;
-
             background: white;
-
             top: 100px;
-
             transform-origin: left center;
         }
 
@@ -234,8 +168,6 @@
             left: 34px;
             transform: rotate(60deg);
         }
-
-        /* ENEMY MIRROR */
 
         #enemy .leftArm,
         #enemy .rightArm,
@@ -260,10 +192,7 @@
             transform: rotate(120deg);
         }
 
-        /* =========================
-           FIGHTING
-        ========================= */
-
+        /* FIGHTING */
         .fighting .leftArm {
             animation: leftPunch 0.35s infinite alternate;
         }
@@ -320,10 +249,7 @@
             }
         }
 
-        /* =========================
-           ATTACK
-        ========================= */
-
+        /* ATTACK */
         .attack {
             animation: attack 0.3s ease;
         }
@@ -360,10 +286,7 @@
             }
         }
 
-        /* =========================
-           HIT
-        ========================= */
-
+        /* HIT */
         .hit {
             animation: hit 0.25s;
         }
@@ -378,10 +301,7 @@
             }
         }
 
-        /* =========================
-           DEATH
-        ========================= */
-
+        /* DEATH */
         .dead {
             animation: fall 1.5s forwards;
         }
@@ -397,9 +317,10 @@
             }
         }
 
-        /* =========================
+
+        /* =========================================
            CENTER MESSAGE
-        ========================= */
+        ========================================= */
 
         #message {
             position: absolute;
@@ -421,7 +342,7 @@
 
             line-height: 1.6;
 
-            background: rgba(8, 8, 18, 0.96);
+            background: rgba(8, 8, 18, 0.94);
 
             padding: 25px 30px;
 
@@ -447,15 +368,15 @@
             visibility: visible;
         }
 
-        /* =========================
-           MESSAGE TEXT
-        ========================= */
+
+        /* =========================================
+           MESSAGE TEXT ANIMATION
+        ========================================= */
 
         #messageText {
             min-height: 70px;
 
             display: flex;
-
             align-items: center;
             justify-content: center;
 
@@ -467,6 +388,7 @@
         }
 
         @keyframes textAppear {
+
             0% {
                 opacity: 0;
                 transform: translateY(20px) scale(0.95);
@@ -476,9 +398,11 @@
                 opacity: 1;
                 transform: translateY(0) scale(1);
             }
+
         }
 
         @keyframes textChange {
+
             0% {
                 opacity: 0;
                 transform: translateY(25px);
@@ -488,13 +412,16 @@
                 opacity: 1;
                 transform: translateY(0);
             }
+
         }
 
-        /* =========================
+
+        /* =========================================
            NEXT BUTTON
-        ========================= */
+        ========================================= */
 
         #nextButton {
+
             margin-top: 18px;
 
             padding: 10px 28px;
@@ -515,10 +442,12 @@
 
             transition:
                 transform 0.2s,
-                box-shadow 0.2s;
+                box-shadow 0.2s,
+                background 0.2s;
         }
 
         #nextButton:hover {
+
             transform: scale(1.08);
 
             box-shadow:
@@ -527,284 +456,132 @@
         }
 
         #nextButton:active {
+
             transform: scale(0.95);
         }
 
-        /* =====================================================
-           📱 MOBILE PHONE
-           ===================================================== */
+
+        /* HEARTS */
+
+        .heart {
+            position: absolute;
+            color: #ff65ae;
+            font-size: 25px;
+
+            animation: floatHeart 2s infinite;
+        }
+
+        @keyframes floatHeart {
+
+            0% {
+                transform: translateY(0) scale(1);
+                opacity: 1;
+            }
+
+            100% {
+                transform: translateY(-80px) scale(1.5);
+                opacity: 0;
+            }
+
+        }
+
+        /* =========================================
+           SPECIAL KAMEHAMEHA ATTACK
+        ========================================= */
+
+        #specialAttack {
+            position: absolute;
+            left: 50%;
+            bottom: 25px;
+            transform: translateX(-50%);
+            z-index: 20;
+            padding: 11px 22px;
+            border: 2px solid #66ccff;
+            border-radius: 25px;
+            background: linear-gradient(135deg, #087cff, #66eaff);
+            color: white;
+            font-size: 14px;
+            font-weight: bold;
+            cursor: pointer;
+            box-shadow: 0 0 15px #66ccff, 0 0 30px #087cff88;
+        }
+
+        #specialAttack:hover {
+            transform: translateX(-50%) scale(1.08);
+            box-shadow: 0 0 25px #66ccff, 0 0 45px #087cff;
+        }
+
+        #specialAttack:disabled {
+            opacity: 0.45;
+            cursor: not-allowed;
+        }
+
+        .kameCharge {
+            animation: kameCharge 0.8s ease-in-out infinite alternate;
+            filter: drop-shadow(0 0 12px #66ccff);
+        }
+
+        .kameBeam {
+            position: absolute;
+            left: 20%;
+            top: 48%;
+            width: 0;
+            height: 18px;
+            border-radius: 50%;
+            background: #e9ffff;
+            box-shadow: 0 0 12px #fff, 0 0 28px #66ccff, 0 0 55px #087cff;
+            z-index: 15;
+            pointer-events: none;
+            animation: kameBeam 0.55s ease-out forwards;
+        }
+
+        .kameFlash {
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            background: white;
+            box-shadow: 0 0 25px white, 0 0 60px #66ccff;
+            transform: translate(-50%, -50%);
+            z-index: 14;
+            pointer-events: none;
+            animation: kameFlash 0.45s ease-out forwards;
+        }
+
+        @keyframes kameCharge {
+            from { transform: scale(1); }
+            to { transform: scale(1.08); }
+        }
+
+        @keyframes kameBeam {
+            0% { width: 0; opacity: 0; }
+            20% { opacity: 1; }
+            100% { width: 70%; opacity: 0; }
+        }
+
+        @keyframes kameFlash {
+            0% { transform: translate(-50%, -50%) scale(0.2); opacity: 1; }
+            100% { transform: translate(-50%, -50%) scale(9); opacity: 0; }
+        }
 
         @media screen and (max-width: 600px) {
-
-            h1 {
-                margin-top: 12px;
-                font-size: 24px;
-            }
-
-            .arena {
-                width: calc(100% - 16px);
-
-                height: 72vh;
-
-                min-height: 420px;
-                max-height: 650px;
-
-                top: 53%;
-
-                border-width: 3px;
-                border-radius: 12px;
-            }
-
-            /* MOBILE HP */
-
-            .hp {
-                top: 14px;
-
-                width: 35%;
-
-                height: 16px;
-            }
-
-            #heroHPBox {
-                left: 14px;
-            }
-
-            #enemyHPBox {
-                right: 14px;
-            }
-
-            /* MOBILE LABEL */
-
-            .label {
-                top: 35px;
-                font-size: 10px;
-            }
-
-            #heroLabel {
-                left: 14px;
-            }
-
-            #enemyLabel {
-                right: 14px;
-            }
-
-            /* MOBILE CHARACTERS */
-
-            .stickman {
-                bottom: 68px;
-
-                transform: scale(0.80);
-            }
-
-            #hero {
-                left: 5%;
-            }
-
-            #enemy {
-                right: 5%;
-            }
-
-            /* MOBILE FLOOR */
-
-            .floor {
-                bottom: 62px;
-            }
-
-            /* MOBILE MESSAGE */
-
-            #message {
-                width: 88%;
-
-                max-width: none;
-
-                padding: 20px 14px;
-
-                font-size: 16px;
-
-                line-height: 1.5;
-
-                border-radius: 13px;
-            }
-
-            #messageText {
-                min-height: 75px;
-
-                padding: 0 5px;
-            }
-
-            /* MOBILE BUTTON */
-
-            #nextButton {
-                margin-top: 14px;
-
-                min-width: 125px;
-
-                padding: 11px 25px;
-
-                font-size: 14px;
-
-                touch-action: manipulation;
-            }
-        }
-
-        /* =====================================================
-           📱 SMALL PHONE
-           ===================================================== */
-
-        @media screen and (max-width: 400px) {
-
-            h1 {
-                font-size: 21px;
-                margin-top: 10px;
-            }
-
-            .arena {
-                width: calc(100% - 10px);
-
-                height: 73vh;
-
-                min-height: 390px;
-            }
-
-            .hp {
-                width: 34%;
-                height: 15px;
-            }
-
-            .label {
-                font-size: 9px;
-            }
-
-            .stickman {
-                transform: scale(0.70);
-            }
-
-            #hero {
-                left: 2%;
-            }
-
-            #enemy {
-                right: 2%;
-            }
-
-            #message {
-                width: 92%;
-
-                padding: 18px 12px;
-
-                font-size: 15px;
-
-                line-height: 1.45;
-            }
-
-            #messageText {
-                min-height: 70px;
-            }
-
-            #nextButton {
-                min-width: 115px;
-
-                padding: 10px 22px;
-
-                font-size: 13px;
-            }
-        }
-
-        /* =====================================================
-           📱 VERY SMALL PHONE
-           ===================================================== */
-
-        @media screen and (max-width: 350px) {
-
-            h1 {
-                font-size: 19px;
-            }
-
-            .arena {
-                height: 70vh;
-                min-height: 360px;
-            }
-
-            .stickman {
-                transform: scale(0.60);
-            }
-
-            #message {
-                width: 94%;
-
-                padding: 16px 10px;
-
-                font-size: 14px;
-            }
-
-            #messageText {
-                min-height: 65px;
-            }
-
-            #nextButton {
-                min-width: 105px;
-
-                padding: 9px 18px;
-            }
-        }
-
-        /* =====================================================
-           📱 MOBILE LANDSCAPE
-           ===================================================== */
-
-        @media screen and (max-width: 900px)
-               and (orientation: landscape) {
-
-            h1 {
-                margin-top: 4px;
-                font-size: 20px;
-            }
-
-            .arena {
-                width: 92%;
-
-                height: 82vh;
-
-                min-height: 280px;
-
-                top: 54%;
-            }
-
-            .stickman {
-                bottom: 35px;
-
-                transform: scale(0.65);
-            }
-
-            .floor {
-                bottom: 32px;
-            }
-
-            #message {
-                width: 75%;
-
-                padding: 12px 18px;
-
-                font-size: 14px;
-            }
-
-            #messageText {
-                min-height: 45px;
-            }
-
-            #nextButton {
-                margin-top: 7px;
-
-                padding: 7px 22px;
+            #specialAttack {
+                bottom: 18px;
+                padding: 9px 17px;
+                font-size: 12px;
             }
         }
 
     </style>
 </head>
 
+
 <body>
 
-    <h1>Man vs. self</h1>
+    <h1>Man vs. self </h1>
+
 
     <div class="arena">
 
@@ -813,24 +590,28 @@
             <div id="heroHP" class="hpbar"></div>
         </div>
 
+
         <!-- ENEMY HP -->
         <div id="enemyHPBox" class="hp">
             <div id="enemyHP" class="hpbar"></div>
         </div>
 
+
         <!-- LABELS -->
         <div id="heroLabel" class="label">
-            CALI
+              CALI
         </div>
 
         <div id="enemyLabel" class="label">
             FUTURE 💔
         </div>
 
+
         <!-- HERO -->
         <div id="hero" class="stickman fighting">
 
             <div class="head"></div>
+
             <div class="body"></div>
 
             <div class="arm leftArm"></div>
@@ -840,11 +621,13 @@
             <div class="leg rightLeg"></div>
 
         </div>
+
 
         <!-- ENEMY -->
         <div id="enemy" class="stickman fighting">
 
             <div class="head"></div>
+
             <div class="body"></div>
 
             <div class="arm leftArm"></div>
@@ -855,10 +638,15 @@
 
         </div>
 
+
         <!-- FLOOR -->
         <div class="floor"></div>
 
-        <!-- CENTER MESSAGE -->
+
+        <!-- =====================================
+             CENTER MESSAGE
+        ====================================== -->
+
         <div id="message">
 
             <div id="messageText">
@@ -866,19 +654,21 @@
             </div>
 
             <button id="nextButton">
-                Next
+                NEXT ❤️
             </button>
 
         </div>
+
+        <button id="specialAttack">⚡Use to survice</button>
 
     </div>
 
 
     <script>
 
-        /* =========================
+        /* =========================================
            GAME VARIABLES
-        ========================= */
+        ========================================= */
 
         let heroHP = 100;
         let enemyHP = 100;
@@ -894,13 +684,15 @@
         const enemyBar = document.getElementById("enemyHP");
 
         const message = document.getElementById("message");
+
         const messageText = document.getElementById("messageText");
+
         const nextButton = document.getElementById("nextButton");
 
 
-        /* =========================
+        /* =========================================
            MESSAGE SENTENCES
-        ========================= */
+        ========================================= */
 
         const messages = [
 
@@ -910,7 +702,7 @@
 
             "BUT...",
 
-            "I, cali ready to delve."
+            "I, cali ready to delve . "
 
         ];
 
@@ -918,20 +710,83 @@
         let messageIndex = 0;
 
 
-        /* =========================
+
+        const specialAttack = document.getElementById("specialAttack");
+        let specialReady = true;
+
+        /* =========================================
+           KAMEHAMEHA SPECIAL ATTACK
+        ========================================= */
+
+        function kamehameha() {
+
+            if (battleOver || !specialReady || enemyHP <= 0) return;
+
+            specialReady = false;
+            specialAttack.disabled = true;
+            specialAttack.textContent = "💥 CHARGING...";
+
+            hero.classList.add("kameCharge");
+
+            setTimeout(function () {
+
+                hero.classList.remove("kameCharge");
+
+                const beam = document.createElement("div");
+                beam.className = "kameBeam";
+                document.querySelector(".arena").appendChild(beam);
+
+                const flash = document.createElement("div");
+                flash.className = "kameFlash";
+                document.querySelector(".arena").appendChild(flash);
+
+                enemy.classList.add("hit");
+
+                enemyHP -= 35;
+
+                if (enemyHP < 0) enemyHP = 0;
+
+                enemyBar.style.width = enemyHP + "%";
+
+                setTimeout(function () {
+                    enemy.classList.remove("hit");
+                    beam.remove();
+                    flash.remove();
+                }, 600);
+
+                if (enemyHP <= 0) {
+                    enemyDies();
+                }
+
+                setTimeout(function () {
+                    specialReady = true;
+                    specialAttack.disabled = false;
+                    specialAttack.textContent = "use it to survive";
+                }, 3000);
+
+            }, 800);
+        }
+
+        specialAttack.addEventListener("click", kamehameha);
+
+
+        /* =========================================
            HERO ATTACK
-        ========================= */
+        ========================================= */
 
         function heroAttack() {
 
             if (battleOver) return;
 
             hero.classList.add("attack");
+
             enemy.classList.add("hit");
+
 
             setTimeout(function () {
 
                 hero.classList.remove("attack");
+
                 enemy.classList.remove("hit");
 
             }, 300);
@@ -939,33 +794,41 @@
 
             enemyHP -= 8;
 
+
             if (enemyHP < 0) {
                 enemyHP = 0;
             }
+
 
             enemyBar.style.width = enemyHP + "%";
 
 
             if (enemyHP <= 0) {
+
                 enemyDies();
+
             }
+
         }
 
 
-        /* =========================
+        /* =========================================
            ENEMY ATTACK
-        ========================= */
+        ========================================= */
 
         function enemyAttack() {
 
             if (battleOver) return;
 
             enemy.classList.add("enemyAttack");
+
             hero.classList.add("hit");
+
 
             setTimeout(function () {
 
                 enemy.classList.remove("enemyAttack");
+
                 hero.classList.remove("hit");
 
             }, 300);
@@ -973,32 +836,42 @@
 
             heroHP -= 20;
 
+
             if (heroHP < 0) {
                 heroHP = 0;
             }
+
 
             heroBar.style.width = heroHP + "%";
 
 
             if (heroHP <= 0) {
+
                 heroDies();
+
             }
+
         }
 
 
-        /* =========================
+        /* =========================================
            HERO DIES
-        ========================= */
+        ========================================= */
 
         function heroDies() {
 
             if (battleOver) return;
 
+
             battleOver = true;
 
+
             hero.classList.remove("fighting");
+
             hero.classList.add("dead");
 
+
+            /* Wait for death animation */
 
             setTimeout(function () {
 
@@ -1006,37 +879,42 @@
 
                 messageIndex = 0;
 
-                messageText.textContent =
-                    messages[messageIndex];
+                messageText.textContent = messages[messageIndex];
 
                 nextButton.textContent = "Next";
 
             }, 800);
+
         }
 
 
-        /* =========================
+        /* =========================================
            ENEMY DIES
-        ========================= */
+        ========================================= */
 
         function enemyDies() {
 
             if (battleOver) return;
 
+
             battleOver = true;
 
+
             enemy.classList.remove("fighting");
+
             enemy.classList.add("dead");
+
         }
 
 
-        /* =========================
+        /* =========================================
            NEXT ATTACK
-        ========================= */
+        ========================================= */
 
         function nextAttack() {
 
             if (battleOver) return;
+
 
             turn++;
 
@@ -1057,25 +935,34 @@
                 setTimeout(nextAttack, 650);
 
             }
+
         }
 
 
-        /* =========================
-           NEXT MESSAGE
-        ========================= */
+        /* =========================================
+           NEXT MESSAGE BUTTON
+        ========================================= */
 
         nextButton.addEventListener("click", function () {
+
+            /* If there are still messages */
 
             if (messageIndex < messages.length - 1) {
 
                 messageIndex++;
 
 
-                /* Restart animation */
+                /* Remove animation */
 
                 messageText.classList.remove("change");
 
+
+                /* Force browser to restart animation */
+
                 void messageText.offsetWidth;
+
+
+                /* Add animation */
 
                 messageText.classList.add("change");
 
@@ -1094,9 +981,11 @@
 
                 }
 
-            } else {
+            }
 
-                /* Close message */
+            else {
+
+                /* Final button */
 
                 message.classList.remove("show");
 
@@ -1105,9 +994,9 @@
         });
 
 
-        /* =========================
+        /* =========================================
            START BATTLE
-        ========================= */
+        ========================================= */
 
         setTimeout(nextAttack, 1200);
 
