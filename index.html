@@ -1,220 +1,358 @@
-
+```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Invitation 💌</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <style>
-    * {
-      box-sizing: border-box;
-    }
+<title>Important Question 👀</title>
 
-    body {
-      margin: 0;
-      min-height: 100vh;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      font-family: Arial, sans-serif;
-      background: linear-gradient(135deg, #ffd6e7, #ffeef5);
-      overflow: hidden;
-    }
+<style>
+* {
+    box-sizing: border-box;
+}
 
-    .card {
-      background: white;
-      width: 90%;
-      max-width: 450px;
-      padding: 40px 25px;
-      text-align: center;
-      border-radius: 25px;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.15);
-    }
+body {
+    margin: 0;
+    min-height: 100vh;
+    font-family: Arial, sans-serif;
+    background: linear-gradient(135deg, #ffd6e8, #d9e7ff);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    overflow: hidden;
+}
 
-    .heart {
-      font-size: 60px;
-      animation: heartbeat 1.2s infinite;
-    }
+.card {
+    width: 100%;
+    max-width: 400px;
+    background: white;
+    border-radius: 25px;
+    padding: 30px 22px;
+    text-align: center;
+    box-shadow: 0 10px 30px rgba(0,0,0,.15);
+}
 
-    h1 {
-      color: #ff4f81;
-      margin-bottom: 10px;
-    }
+.emoji {
+    font-size: 60px;
+}
 
-    p {
-      color: #555;
-      font-size: 18px;
-      line-height: 1.5;
-    }
+h1 {
+    color: #ff4f81;
+    margin: 15px 0;
+}
 
-    .buttons {
-      margin-top: 30px;
-      display: flex;
-      justify-content: center;
-      gap: 20px;
-    }
+p {
+    color: #555;
+    font-size: 18px;
+    line-height: 1.5;
+}
 
-    button {
-      border: none;
-      padding: 13px 28px;
-      font-size: 17px;
-      border-radius: 30px;
-      cursor: pointer;
-      transition: 0.2s;
-    }
+button {
+    border: none;
+    border-radius: 30px;
+    padding: 14px 25px;
+    margin: 8px;
+    font-size: 17px;
+    cursor: pointer;
+}
 
-    #yes {
-      background: #ff4f81;
-      color: white;
-    }
+.yes {
+    background: #ff4f81;
+    color: white;
+}
 
-    #yes:hover {
-      transform: scale(1.1);
-      background: #ff2f6d;
-    }
+.no {
+    background: #ddd;
+    color: #333;
+}
 
-    #no {
-      background: #ddd;
-      color: #333;
-      position: relative;
-    }
+.hidden {
+    display: none;
+}
 
-    .success {
-      display: none;
-    }
+.question {
+    font-size: 26px;
+    font-weight: bold;
+    color: #333;
+    margin: 25px 0;
+}
 
-    .success h2 {
-      color: #ff4f81;
-      font-size: 30px;
-    }
+#noButton {
+    position: relative;
+}
 
-    @keyframes heartbeat {
-      0%, 100% {
-        transform: scale(1);
-      }
-      50% {
-        transform: scale(1.15);
-      }
-    }
+.small {
+    font-size: 14px;
+    color: #999;
+}
 
-    .floating-heart {
-      position: absolute;
-      bottom: -30px;
-      font-size: 25px;
-      animation: floatUp 5s linear infinite;
-      opacity: 0.7;
-    }
+@keyframes shake {
+    0% { transform: rotate(0); }
+    25% { transform: rotate(5deg); }
+    50% { transform: rotate(-5deg); }
+    75% { transform: rotate(5deg); }
+    100% { transform: rotate(0); }
+}
 
-    @keyframes floatUp {
-      from {
-        transform: translateY(0);
-        opacity: 0;
-      }
-
-      20% {
-        opacity: 0.7;
-      }
-
-      to {
-        transform: translateY(-110vh);
-        opacity: 0;
-      }
-    }
-  </style>
+.shake {
+    animation: shake .3s;
+}
+</style>
 </head>
 
 <body>
 
-  <div class="card">
+<div class="card">
 
-    <div id="invitation">
+    <!-- START -->
+    <div id="start">
 
-      <div class="heart">💌</div>
+        <div class="emoji">📩</div>
 
-      <h1>SUP</h1>
+        <h1>Important question</h1>
 
-      <p>
-        Hey! bro I have question for you... 🥰
-      </p>
+        <p>
+            Hi! just a questions. 👀
+        </p>
 
-      <p>
-        are you gay? 🌈
-      </p>
+        <p>
+            Please answer honestly.
+        </p>
 
-      <div class="buttons">
-        <button id="yes" onclick="sayYes()">YES 💗</button>
-        <button id="no" onmouseover="moveNo()">NO 😭</button>
-      </div>
-
-    </div>
-
-    <div id="success" class="success">
-
-      <div class="heart">💖</div>
-
-      <h2>YAY!!! 🥰</h2>
-
-      <p>
-        I knew you'd say gay! 😌
-      </p>
-
-      <p>
-        bwhahahahah 🌹✨
-      </p>
+        <button class="yes" onclick="startQuiz()">
+            Okay 😌
+        </button>
 
     </div>
 
-  </div>
 
-  <script>
+    <!-- QUESTION 1 -->
+    <div id="q1" class="hidden">
 
-    const noButton = document.getElementById("no");
+        <div class="emoji">👀</div>
 
-    function moveNo() {
+        <div class="question">
+            Are you gay?
+        </div>
 
-      // Make the button move around the screen
-      const maxX = window.innerWidth - noButton.offsetWidth - 20;
-      const maxY = window.innerHeight - noButton.offsetHeight - 20;
+        <button class="yes" onclick="answer1()">
+            YES 😭
+        </button>
 
-      const randomX = Math.max(10, Math.random() * maxX);
-      const randomY = Math.max(10, Math.random() * maxY);
+        <button class="no" onclick="answer1()">
+            NO 😎
+        </button>
 
-      noButton.style.position = "fixed";
-      noButton.style.left = randomX + "px";
-      noButton.style.top = randomY + "px";
-    }
+    </div>
 
-    function sayYes() {
 
-      document.getElementById("invitation").style.display = "none";
-      document.getElementById("success").style.display = "block";
+    <!-- QUESTION 2 -->
+    <div id="q2" class="hidden">
 
-      createHearts();
-    }
+        <div class="emoji">🤨</div>
 
-    function createHearts() {
+        <div class="question">
+            Sureeeee?
+        </div>
 
-      for (let i = 0; i < 25; i++) {
+        <button class="yes" onclick="answer2()">
+            YES
+        </button>
+
+        <button class="no" onclick="answer2()">
+            VERY SURE
+        </button>
+
+    </div>
+
+
+    <!-- QUESTION 3 -->
+    <div id="q3" class="hidden">
+
+        <div class="emoji">🧐</div>
+
+        <div class="question">
+            are you very sure, you are not gay?
+        </div>
+
+        <button class="yes" onclick="answer3()">
+            yes 😳
+        </button>
+
+        <button class="no" onclick="answer3()">
+            No 😭
+        </button>
+
+    </div>
+
+
+    <!-- FINAL -->
+    <div id="final" class="hidden">
+
+        <div class="emoji">💌</div>
+
+        <h1>Last Question...</h1>
+
+        <p>
+            This is VERY important.
+        </p>
+
+        <div class="question">
+            are you sure? 👀❤️
+        </div>
+
+        <button class="yes" onclick="yesFinal()">
+            YES 💗
+        </button>
+
+        <button
+            class="no"
+            id="noButton"
+            onclick="moveNo()">
+            NO 😭
+        </button>
+
+        <p class="small">
+            Choose wisely. 😈
+        </p>
+
+    </div>
+
+
+    <!-- SUCCESS -->
+    <div id="success" class="hidden">
+
+        <div class="emoji">🎉</div>
+
+        <h1>HAHAHAHA YES! 😂</h1>
+
+        <p>
+            Congratulations!
+        </p>
+
+        <p>
+            You have officially been trapped. 😭❤️
+        </p>
+
+        <p>
+            <strong>It's a date. No backing out. 😎</strong>
+        </p>
+
+    </div>
+
+</div>
+
+
+<script>
+
+function hideAll() {
+    document.getElementById("start").classList.add("hidden");
+    document.getElementById("q1").classList.add("hidden");
+    document.getElementById("q2").classList.add("hidden");
+    document.getElementById("q3").classList.add("hidden");
+    document.getElementById("final").classList.add("hidden");
+    document.getElementById("success").classList.add("hidden");
+}
+
+function startQuiz() {
+    hideAll();
+    document.getElementById("q1").classList.remove("hidden");
+}
+
+function answer1() {
+    hideAll();
+    document.getElementById("q2").classList.remove("hidden");
+}
+
+function answer2() {
+    hideAll();
+    document.getElementById("q3").classList.remove("hidden");
+}
+
+function answer3() {
+    hideAll();
+    document.getElementById("final").classList.remove("hidden");
+}
+
+
+// MOBILE-FRIENDLY NO BUTTON
+function moveNo() {
+
+    const button = document.getElementById("noButton");
+
+    button.classList.add("shake");
+
+    setTimeout(() => {
+        button.classList.remove("shake");
+    }, 300);
+
+    // Random position
+    const padding = 20;
+
+    const maxX = window.innerWidth - button.offsetWidth - padding;
+    const maxY = window.innerHeight - button.offsetHeight - padding;
+
+    const x = Math.random() * maxX;
+    const y = Math.random() * maxY;
+
+    button.style.position = "fixed";
+    button.style.left = Math.max(padding, x) + "px";
+    button.style.top = Math.max(padding, y) + "px";
+}
+
+
+// YES BUTTON
+function yesFinal() {
+
+    hideAll();
+
+    document.getElementById("success").classList.remove("hidden");
+
+    createConfetti();
+}
+
+
+// Simple hearts/confetti
+function createConfetti() {
+
+    const emojis = ["❤️", "💗", "😂", "🎉", "💖", "✨"];
+
+    for (let i = 0; i < 30; i++) {
 
         const heart = document.createElement("div");
 
-        heart.className = "floating-happy";
-        heart.innerHTML = "😌";
+        heart.innerHTML =
+            emojis[Math.floor(Math.random() * emojis.length)];
 
+        heart.style.position = "fixed";
         heart.style.left = Math.random() * 100 + "vw";
-        heart.style.animationDelay = Math.random() * 3 + "s";
-        heart.style.fontSize = (15 + Math.random() * 25) + "px";
+        heart.style.top = "-30px";
+        heart.style.fontSize =
+            (20 + Math.random() * 25) + "px";
+
+        heart.style.transition =
+            "transform 3s linear, opacity 3s";
 
         document.body.appendChild(heart);
 
         setTimeout(() => {
-          heart.remove();
-        }, 6000);
-      }
-    }
 
-  </script>
+            heart.style.transform =
+                "translateY(110vh) rotate(720deg)";
+
+            heart.style.opacity = "0";
+
+        }, 50);
+
+        setTimeout(() => {
+            heart.remove();
+        }, 3200);
+    }
+}
+
+</script>
 
 </body>
 </html>
