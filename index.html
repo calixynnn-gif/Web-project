@@ -1,354 +1,1311 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>Important Question 👀</title>
+<title>CALI — Divine God</title>
 
 <style>
-* {
-    box-sizing: border-box;
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
 }
 
-body {
-    margin: 0;
-    min-height: 100vh;
-    font-family: Arial, sans-serif;
-    background: linear-gradient(135deg, #ffd6e8, #d9e7ff);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 20px;
-    overflow: hidden;
+html,body{
+    width:100%;
+    height:100%;
 }
 
-.card {
-    width: 100%;
-    max-width: 400px;
-    background: white;
-    border-radius: 25px;
-    padding: 30px 22px;
-    text-align: center;
-    box-shadow: 0 10px 30px rgba(0,0,0,.15);
+body{
+    overflow:hidden;
+    position:relative;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    background:
+        radial-gradient(ellipse at center,
+            #17245c 0%,
+            #0b1235 28%,
+            #030616 65%,
+            #000108 100%);
+    font-family:Georgia,"Times New Roman",serif;
 }
 
-.emoji {
-    font-size: 60px;
+/* =========================
+   SPACE
+========================= */
+
+.space{
+    position:absolute;
+    inset:0;
+    overflow:hidden;
 }
 
-h1 {
-    color: #ff4f81;
-    margin: 15px 0;
+.milky-way{
+    position:absolute;
+    width:170%;
+    height:55%;
+    left:-35%;
+    top:22%;
+    transform:rotate(-18deg);
+    background:
+        radial-gradient(ellipse,
+        rgba(255,255,255,.27),
+        rgba(135,165,255,.15) 25%,
+        rgba(100,70,220,.09) 45%,
+        transparent 72%);
+    filter:blur(22px);
 }
 
-p {
-    color: #555;
-    font-size: 18px;
-    line-height: 1.5;
+.nebula{
+    position:absolute;
+    inset:-20%;
+    background:
+        radial-gradient(ellipse at 15% 20%,
+        rgba(20,100,255,.18),transparent 28%),
+        radial-gradient(ellipse at 85% 20%,
+        rgba(125,50,255,.17),transparent 30%),
+        radial-gradient(ellipse at 25% 80%,
+        rgba(30,150,255,.12),transparent 30%),
+        radial-gradient(ellipse at 75% 80%,
+        rgba(110,30,220,.13),transparent 30%);
+    filter:blur(50px);
 }
 
-button {
-    border: none;
-    border-radius: 30px;
-    padding: 14px 25px;
-    margin: 8px;
-    font-size: 17px;
-    cursor: pointer;
+/* =========================
+   STARS
+========================= */
+
+.star{
+    position:absolute;
+    border-radius:50%;
+    background:#fff;
+    box-shadow:
+        0 0 5px #fff,
+        0 0 13px rgba(120,180,255,.8);
+    animation:twinkle 2s infinite alternate;
 }
 
-.yes {
-    background: #ff4f81;
-    color: white;
+@keyframes twinkle{
+    from{
+        opacity:.15;
+        transform:scale(.5);
+    }
+    to{
+        opacity:1;
+        transform:scale(1.5);
+    }
 }
 
-.no {
-    background: #ddd;
-    color: #333;
+/* =========================
+   AURA
+========================= */
+
+.aura{
+    position:absolute;
+    width:600px;
+    height:600px;
+    border-radius:50%;
+    background:
+        radial-gradient(circle,
+        rgba(80,130,255,.14),
+        transparent 70%);
+    filter:blur(18px);
+    animation:auraPulse 3s infinite alternate;
 }
 
-.hidden {
-    display: none;
+@keyframes auraPulse{
+    from{transform:scale(.9)}
+    to{transform:scale(1.12)}
 }
 
-.question {
-    font-size: 26px;
-    font-weight: bold;
-    color: #333;
-    margin: 25px 0;
+/* =========================
+   PLANET SYSTEM
+========================= */
+
+.orbit-system{
+    position:absolute;
+    width:720px;
+    height:380px;
+    top:13%;
+    left:50%;
+    transform:translateX(-50%);
+    z-index:5;
+    transition:.8s ease;
 }
 
-#noButton {
-    position: relative;
+.orbit{
+    position:absolute;
+    left:50%;
+    top:50%;
+    border:1px solid rgba(190,215,255,.55);
+    border-radius:50%;
+    box-shadow:0 0 14px rgba(80,140,255,.35);
+    transition:1s ease;
 }
 
-.small {
-    font-size: 14px;
-    color: #999;
+.orbit.one{
+    width:700px;
+    height:185px;
+    transform:translate(-50%,-50%) rotate(-8deg);
 }
 
-@keyframes shake {
-    0% { transform: rotate(0); }
-    25% { transform: rotate(5deg); }
-    50% { transform: rotate(-5deg); }
-    75% { transform: rotate(5deg); }
-    100% { transform: rotate(0); }
+.orbit.two{
+    width:590px;
+    height:150px;
+    transform:translate(-50%,-50%) rotate(13deg);
 }
 
-.shake {
-    animation: shake .3s;
+.orbit.three{
+    width:460px;
+    height:115px;
+    transform:translate(-50%,-50%) rotate(-18deg);
+}
+
+/* =========================
+   PLANETS
+========================= */
+
+.planet{
+    position:absolute;
+    border-radius:50%;
+    transition:
+        transform 1s cubic-bezier(.2,.8,.2,1),
+        opacity .8s,
+        filter .3s;
+}
+
+.blue{
+    width:44px;
+    height:44px;
+    left:7%;
+    top:38%;
+    background:
+        radial-gradient(circle at 30% 25%,
+        #fff,
+        #48aaff 35%,
+        #112b9e 72%,
+        #020525);
+    box-shadow:
+        inset -10px -8px 14px rgba(0,0,0,.7),
+        0 0 15px #3195ff,
+        0 0 35px #3195ff;
+}
+
+.purple{
+    width:34px;
+    height:34px;
+    right:11%;
+    top:23%;
+    background:
+        radial-gradient(circle at 30% 25%,
+        #fff,
+        #ad55ff 35%,
+        #420b82 75%,
+        #10001e);
+    box-shadow:
+        inset -8px -7px 12px rgba(0,0,0,.7),
+        0 0 15px #a866ff,
+        0 0 35px #a866ff;
+}
+
+.ice{
+    width:27px;
+    height:27px;
+    left:34%;
+    top:1%;
+    background:
+        radial-gradient(circle at 30% 25%,
+        #fff,
+        #60eaff 40%,
+        #07527d 80%);
+    box-shadow:
+        inset -7px -6px 10px rgba(0,0,0,.6),
+        0 0 14px #63eaff,
+        0 0 28px #63eaff;
+}
+
+.dark{
+    width:29px;
+    height:29px;
+    right:28%;
+    bottom:3%;
+    background:
+        radial-gradient(circle at 30% 25%,
+        #ddd0ff,
+        #682db0 45%,
+        #100020 80%);
+    box-shadow:
+        inset -7px -6px 10px rgba(0,0,0,.7),
+        0 0 14px #9b55ff,
+        0 0 30px #9b55ff;
+}
+
+/* =========================
+   GOD
+========================= */
+
+.god{
+    position:relative;
+    z-index:20;
+    text-align:center;
+}
+
+.crown{
+    font-size:65px;
+    color:#ffe66d;
+    text-shadow:
+        0 0 8px #fff,
+        0 0 22px #ffd700,
+        0 0 45px #806cff;
+    animation:crownFloat 2s infinite alternate;
+}
+
+@keyframes crownFloat{
+    from{transform:translateY(0)}
+    to{transform:translateY(-9px)}
+}
+
+.name{
+    position:relative;
+    cursor:pointer;
+    user-select:none;
+
+    font-size:clamp(80px,18vw,220px);
+    font-weight:900;
+    letter-spacing:12px;
+
+    background:
+        linear-gradient(
+        180deg,
+        #fff 0%,
+        #fff7a0 15%,
+        #ffd83d 35%,
+        #d99a16 60%,
+        #704500 100%);
+
+    -webkit-background-clip:text;
+    background-clip:text;
+    color:transparent;
+
+    text-shadow:
+        0 0 5px #fff,
+        0 0 13px #ffe66d,
+        0 0 30px #d8a900,
+        0 0 55px rgba(80,140,255,.8);
+
+    animation:godGlow 2s infinite alternate;
+
+    transition:.15s;
+}
+
+.name:active{
+    transform:scale(.94);
+}
+
+@keyframes godGlow{
+    from{filter:brightness(1)}
+    to{filter:brightness(1.3)}
+}
+
+.subtitle{
+    margin-top:-8px;
+    color:#dce6ff;
+    font-family:Arial,sans-serif;
+    font-size:18px;
+    letter-spacing:12px;
+    text-shadow:
+        0 0 10px #719cff,
+        0 0 25px #4b6cff;
+}
+
+/* =========================
+   DIVINE TOUCH MESSAGE
+========================= */
+
+.divine-message{
+    position:fixed;
+    left:50%;
+    top:50%;
+    transform:translate(-50%,-50%) scale(.25);
+    width:95%;
+    z-index:100;
+    text-align:center;
+    pointer-events:none;
+    opacity:0;
+    transition:
+        opacity .15s ease,
+        transform .35s cubic-bezier(.17,.67,.25,1.4);
+}
+
+.divine-message.show{
+    opacity:1;
+    transform:translate(-50%,-50%) scale(1);
+}
+
+.divine-message.hide{
+    opacity:0;
+    transform:translate(-50%,-50%) scale(1.5);
+}
+
+.divine-message::before{
+    content:"";
+    position:fixed;
+    left:50%;
+    top:50%;
+    width:100vw;
+    height:100vh;
+    transform:translate(-50%,-50%);
+    background:
+        radial-gradient(circle,
+        rgba(0,0,0,.15),
+        rgba(0,0,0,.82));
+    z-index:-1;
+}
+
+.divine-symbol{
+    font-size:55px;
+    color:#fff;
+    text-shadow:
+        0 0 10px #fff,
+        0 0 30px #66cfff,
+        0 0 65px #286cff;
+    animation:boltPulse .18s infinite alternate;
+}
+
+@keyframes boltPulse{
+    from{transform:scale(1)}
+    to{transform:scale(1.18)}
+}
+
+.divine-text{
+    font-size:clamp(32px,7vw,88px);
+    font-weight:900;
+    line-height:1.05;
+    letter-spacing:4px;
+    color:#fff;
+    text-shadow:
+        0 0 5px #fff,
+        0 0 15px #ffe98a,
+        0 0 32px #ffb300,
+        0 0 65px #ff6200,
+        0 0 100px #ff2200;
+}
+
+.divine-text span{
+    color:#ffd83d;
+}
+
+.divine-subtext{
+    margin-top:20px;
+    font-family:Arial,sans-serif;
+    font-size:11px;
+    letter-spacing:6px;
+    color:#dce8ff;
+    text-shadow:
+        0 0 10px #559cff,
+        0 0 25px #377cff;
+}
+
+/* =========================
+   FIRE
+========================= */
+
+.firestorm{
+    position:fixed;
+    inset:-20%;
+    z-index:8;
+    pointer-events:none;
+    opacity:0;
+    background:
+        radial-gradient(ellipse at 0% 100%,
+        rgba(255,40,0,.98),
+        rgba(255,120,0,.6) 20%,
+        transparent 45%),
+        radial-gradient(ellipse at 100% 100%,
+        rgba(255,40,0,.98),
+        rgba(255,120,0,.6) 20%,
+        transparent 45%),
+        radial-gradient(ellipse at 50% 100%,
+        rgba(255,70,0,.5),
+        transparent 55%);
+    filter:blur(8px);
+    transition:.2s;
+}
+
+body.awakened .firestorm{
+    opacity:1;
+}
+
+.flame{
+    position:absolute;
+    bottom:-30px;
+    width:30px;
+    height:130px;
+    background:
+        linear-gradient(
+        to top,
+        #ff1200,
+        #ff7000,
+        #ffe600,
+        transparent);
+    border-radius:50% 50% 35% 35%;
+    filter:
+        blur(5px)
+        drop-shadow(0 0 20px #ff3b00);
+    opacity:0;
+}
+
+body.awakened .flame{
+    opacity:1;
+    animation:flameMove .4s infinite alternate;
+}
+
+@keyframes flameMove{
+    from{transform:scaleY(.8) rotate(-3deg)}
+    to{transform:scaleY(1.2) rotate(4deg)}
+}
+
+/* =========================
+   LIGHTNING
+========================= */
+
+.lightning{
+    position:fixed;
+    width:5px;
+    height:430px;
+    background:#fff;
+    box-shadow:
+        0 0 10px #fff,
+        0 0 25px #00aaff,
+        0 0 60px #006eff;
+    z-index:40;
+    opacity:0;
+    pointer-events:none;
+}
+
+.l1{
+    left:7%;
+    top:-50px;
+    transform:rotate(25deg);
+}
+
+.l2{
+    right:7%;
+    top:-50px;
+    transform:rotate(-25deg);
+}
+
+.l3{
+    left:12%;
+    bottom:-80px;
+    transform:rotate(-18deg);
+}
+
+.l4{
+    right:12%;
+    bottom:-80px;
+    transform:rotate(18deg);
+}
+
+/* =========================
+   EXPLOSION
+========================= */
+
+.planet-explosion{
+    position:fixed;
+    left:50%;
+    top:43%;
+    width:100px;
+    height:100px;
+    border-radius:50%;
+    z-index:35;
+    pointer-events:none;
+    background:
+        radial-gradient(circle,
+        #fff 0%,
+        #ffe600 15%,
+        #ff6500 35%,
+        transparent 70%);
+    opacity:0;
+    transform:translate(-50%,-50%) scale(.2);
+}
+
+.planet-explosion.active{
+    animation:planetBoom .75s ease-out;
+}
+
+@keyframes planetBoom{
+    0%{
+        opacity:1;
+        transform:translate(-50%,-50%) scale(.2);
+    }
+    30%{
+        opacity:1;
+        transform:translate(-50%,-50%) scale(3);
+    }
+    100%{
+        opacity:0;
+        transform:translate(-50%,-50%) scale(8);
+    }
+}
+
+/* =========================
+   DEBRIS
+========================= */
+
+.explosion-particle{
+    position:fixed;
+    border-radius:50%;
+    z-index:60;
+    pointer-events:none;
+    box-shadow:
+        0 0 8px #fff,
+        0 0 20px #ff7500;
+    animation:debris 1.5s forwards;
+}
+
+@keyframes debris{
+    0%{
+        transform:translate(0,0) scale(1) rotate(0);
+        opacity:1;
+    }
+    100%{
+        transform:
+            translate(var(--x),var(--y))
+            scale(.03)
+            rotate(900deg);
+        opacity:0;
+    }
+}
+
+/* =========================
+   SCREEN SHAKE
+========================= */
+
+body.awakened{
+    animation:shake .09s infinite;
+}
+
+@keyframes shake{
+    0%{transform:translate(0,0)}
+    25%{transform:translate(5px,-4px)}
+    50%{transform:translate(-5px,4px)}
+    75%{transform:translate(4px,5px)}
+    100%{transform:translate(-4px,-5px)}
+}
+
+body.awakened .name{
+    filter:
+        brightness(1.8)
+        drop-shadow(0 0 30px #fff)
+        drop-shadow(0 0 80px #ff9d00);
+    animation:divineName .2s infinite alternate;
+}
+
+@keyframes divineName{
+    from{transform:scale(1)}
+    to{transform:scale(1.04)}
+}
+
+body.awakened .orbit{
+    opacity:0;
+    transform:
+        translate(-50%,-50%)
+        scale(2.5);
+}
+
+/* =========================
+   THUNDER FLASH
+========================= */
+
+.thunder-flash{
+    position:fixed;
+    inset:0;
+    z-index:90;
+    pointer-events:none;
+    background:#fff;
+    opacity:0;
+}
+
+.thunder-flash.active{
+    animation:flash .3s ease-out;
+}
+
+@keyframes flash{
+    0%{opacity:0}
+    10%{opacity:.95}
+    23%{opacity:0}
+    38%{opacity:.7}
+    100%{opacity:0}
+}
+
+/* =========================
+   MOBILE
+========================= */
+
+@media(max-width:600px){
+
+    .orbit-system{
+        width:430px;
+        height:250px;
+        top:20%;
+    }
+
+    .orbit.one{
+        width:430px;
+    }
+
+    .orbit.two{
+        width:360px;
+    }
+
+    .orbit.three{
+        width:290px;
+    }
+
+    .name{
+        font-size:78px;
+        letter-spacing:5px;
+    }
+
+    .crown{
+        font-size:48px;
+    }
+
+    .subtitle{
+        font-size:9px;
+        letter-spacing:5px;
+    }
+
+    .divine-text{
+        font-size:34px;
+    }
+
+    .divine-symbol{
+        font-size:42px;
+    }
+
+    .divine-subtext{
+        font-size:8px;
+        letter-spacing:4px;
+    }
 }
 </style>
 </head>
 
 <body>
 
-<div class="card">
+<!-- SPACE -->
+<div class="space">
+    <div class="milky-way"></div>
+    <div class="nebula"></div>
+</div>
 
-    <!-- START -->
-    <div id="start">
+<div class="aura"></div>
 
-        <div class="emoji">📩</div>
+<!-- PLANETS -->
+<div class="orbit-system">
 
-        <h1>Important question</h1>
+    <div class="orbit one"></div>
+    <div class="orbit two"></div>
+    <div class="orbit three"></div>
 
-        <p>
-            Hi! just a questions. 👀
-        </p>
+    <div class="planet blue"></div>
+    <div class="planet purple"></div>
+    <div class="planet ice"></div>
+    <div class="planet dark"></div>
 
-        <p>
-            Please answer honestly.
-        </p>
+</div>
 
-        <button class="yes" onclick="startQuiz()">
-            Okay 😌
-        </button>
+<!-- FIRE -->
+<div class="firestorm" id="firestorm"></div>
 
+<!-- LIGHTNING -->
+<div class="lightning l1"></div>
+<div class="lightning l2"></div>
+<div class="lightning l3"></div>
+<div class="lightning l4"></div>
+
+<!-- EXPLOSION FLASH -->
+<div class="planet-explosion" id="planetExplosion"></div>
+
+<!-- THUNDER FLASH -->
+<div class="thunder-flash" id="thunderFlash"></div>
+
+<!-- DIVINE MESSAGE -->
+<div class="divine-message" id="divineMessage">
+
+    <div class="divine-symbol">😠</div>
+
+    <div class="divine-text">
+        HOW DARE YOU<br>
+        <span>NOW IM MAD 😤?</span>
     </div>
 
-
-    <!-- QUESTION 1 -->
-    <div id="q1" class="hidden">
-
-        <div class="emoji">👀</div>
-
-        <div class="question">
-            Are you gay?
-        </div>
-
-        <button class="yes" onclick="answer1()">
-            YES 😭
-        </button>
-
-        <button class="no" onclick="answer1()">
-            NO 😎
-        </button>
-
-    </div>
-
-
-    <!-- QUESTION 2 -->
-    <div id="q2" class="hidden">
-
-        <div class="emoji">🤨</div>
-
-        <div class="question">
-            Sureeeee?
-        </div>
-
-        <button class="yes" onclick="answer2()">
-            YES
-        </button>
-
-        <button class="no" onclick="answer2()">
-            VERY SURE
-        </button>
-
-    </div>
-
-
-    <!-- QUESTION 3 -->
-    <div id="q3" class="hidden">
-
-        <div class="emoji">🧐</div>
-
-        <div class="question">
-            are you very sure, you are not gay?
-        </div>
-
-        <button class="yes" onclick="answer3()">
-            yes 😳
-        </button>
-
-        <button class="no" onclick="answer3()">
-            No 😭
-        </button>
-
-    </div>
-
-
-    <!-- FINAL -->
-    <div id="final" class="hidden">
-
-        <div class="emoji">💌</div>
-
-        <h1>Last Question...</h1>
-
-        <p>
-            This is VERY important.
-        </p>
-
-        <div class="question">
-            are you sure? 👀❤️
-        </div>
-
-        <button class="yes" onclick="yesFinal()">
-            YES 💗
-        </button>
-
-        <button
-            class="no"
-            id="noButton"
-            onclick="moveNo()">
-            NO 😭
-        </button>
-
-        <p class="small">
-            Choose wisely. 😈
-        </p>
-
-    </div>
-
-
-    <!-- SUCCESS -->
-    <div id="success" class="hidden">
-
-        <div class="emoji">🎉</div>
-
-        <h1>HAHAHAHA YES! 😂</h1>
-
-        <p>
-            Congratulations!
-        </p>
-
-        <p>
-            You have officially been trapped. 😭❤️
-        </p>
-
-        <p>
-            <strong>I knew it, you are gay. 😎</strong>
-        </p>
-
+    <div class="divine-subtext">
+        YOU MAKE ME MAD 😠
     </div>
 
 </div>
 
+<!-- GOD -->
+<div class="god">
+
+    <div class="crown">HI</div>
+
+    <div
+        class="name"
+        id="cali"
+        onclick="touchCali()"
+        ontouchstart="touchCali()">
+        CALI
+    </div>
+
+    <div class="subtitle">
+       DONT EVER TO TOUCH ME
+    </div>
+
+
+</div>
 
 <script>
 
-function hideAll() {
-    document.getElementById("start").classList.add("hidden");
-    document.getElementById("q1").classList.add("hidden");
-    document.getElementById("q2").classList.add("hidden");
-    document.getElementById("q3").classList.add("hidden");
-    document.getElementById("final").classList.add("hidden");
-    document.getElementById("success").classList.add("hidden");
-}
+/* =========================
+   STARS
+========================= */
 
-function startQuiz() {
-    hideAll();
-    document.getElementById("q1").classList.remove("hidden");
-}
+for(let i=0;i<260;i++){
 
-function answer1() {
-    hideAll();
-    document.getElementById("q2").classList.remove("hidden");
-}
+    const star=document.createElement("div");
 
-function answer2() {
-    hideAll();
-    document.getElementById("q3").classList.remove("hidden");
-}
+    star.className="star";
 
-function answer3() {
-    hideAll();
-    document.getElementById("final").classList.remove("hidden");
+    const size=1+Math.random()*3;
+
+    star.style.width=size+"px";
+    star.style.height=size+"px";
+
+    star.style.left=Math.random()*100+"vw";
+    star.style.top=Math.random()*100+"vh";
+
+    star.style.animationDelay=
+        Math.random()*3+"s";
+
+    document.body.appendChild(star);
 }
 
 
-// MOBILE-FRIENDLY NO BUTTON
-function moveNo() {
+/* =========================
+   FIRE PARTICLES
+========================= */
 
-    const button = document.getElementById("noButton");
+for(let i=0;i<100;i++){
 
-    button.classList.add("shake");
+    const flame=document.createElement("div");
 
-    setTimeout(() => {
-        button.classList.remove("shake");
-    }, 300);
+    flame.className="flame";
 
-    // Random position
-    const padding = 20;
+    flame.style.left=
+        Math.random()*100+"vw";
 
-    const maxX = window.innerWidth - button.offsetWidth - padding;
-    const maxY = window.innerHeight - button.offsetHeight - padding;
+    flame.style.height=
+        70+Math.random()*180+"px";
 
-    const x = Math.random() * maxX;
-    const y = Math.random() * maxY;
+    flame.style.width=
+        15+Math.random()*45+"px";
 
-    button.style.position = "fixed";
-    button.style.left = Math.max(padding, x) + "px";
-    button.style.top = Math.max(padding, y) + "px";
+    flame.style.animationDelay=
+        Math.random()+"s";
+
+    document
+        .getElementById("firestorm")
+        .appendChild(flame);
 }
 
 
-// YES BUTTON
-function yesFinal() {
+/* =========================
+   STATE
+========================= */
 
-    hideAll();
+let touched=false;
 
-    document.getElementById("success").classList.remove("hidden");
 
-    createConfetti();
+/* =========================
+   TOUCH CALI
+========================= */
+
+function touchCali(){
+
+    if(touched) return;
+
+    touched=true;
+
+    const message=
+        document.getElementById(
+            "divineMessage"
+        );
+
+    /* SHOW MESSAGE */
+
+    message.classList.remove("hide");
+
+    message.classList.add("show");
+
+
+    /* FIRST THUNDER */
+
+    setTimeout(()=>{
+        playThunder();
+    },300);
+
+
+    /* LIGHTNING */
+
+    setTimeout(()=>{
+        lightningStrike();
+    },450);
+
+
+    setTimeout(()=>{
+        lightningStrike();
+    },600);
+
+
+    /* MESSAGE DISAPPEARS */
+
+    setTimeout(()=>{
+
+        message.classList.remove("show");
+        message.classList.add("hide");
+
+    },1900);
+
+
+    /* GOD AWAKENS */
+
+    setTimeout(()=>{
+
+        awakenGod();
+
+    },2100);
+
 }
 
 
-// Simple hearts/confetti
-function createConfetti() {
+/* =========================
+   AWAKEN
+========================= */
 
-    const emojis = ["❤️", "💗", "😂", "🎉", "💖", "✨"];
+function awakenGod(){
 
-    for (let i = 0; i < 30; i++) {
+    document.body.classList.add(
+        "awakened"
+    );
 
-        const heart = document.createElement("div");
 
-        heart.innerHTML =
-            emojis[Math.floor(Math.random() * emojis.length)];
+    const flash=
+        document.getElementById(
+            "thunderFlash"
+        );
 
-        heart.style.position = "fixed";
-        heart.style.left = Math.random() * 100 + "vw";
-        heart.style.top = "-30px";
-        heart.style.fontSize =
-            (20 + Math.random() * 25) + "px";
+    flash.classList.remove("active");
 
-        heart.style.transition =
-            "transform 3s linear, opacity 3s";
+    void flash.offsetWidth;
 
-        document.body.appendChild(heart);
+    flash.classList.add("active");
 
-        setTimeout(() => {
 
-            heart.style.transform =
-                "translateY(110vh) rotate(720deg)";
+    playThunder();
 
-            heart.style.opacity = "0";
 
-        }, 50);
+    lightningStrike();
 
-        setTimeout(() => {
-            heart.remove();
-        }, 3200);
+
+    setTimeout(
+        lightningStrike,
+        120
+    );
+
+    setTimeout(
+        lightningStrike,
+        250
+    );
+
+    setTimeout(
+        lightningStrike,
+        420
+    );
+
+
+    /* PLANET EXPLOSION */
+
+    setTimeout(()=>{
+
+        explodePlanets();
+
+    },300);
+
+
+    /* MORE THUNDER */
+
+    setTimeout(
+        playThunder,
+        600
+    );
+
+    setTimeout(
+        playThunder,
+        1100
+    );
+
+}
+
+
+/* =========================
+   PLANET EXPLOSION
+========================= */
+
+function explodePlanets(){
+
+    const planets=
+        document.querySelectorAll(
+            ".planet"
+        );
+
+
+    /* BIG FLASH */
+
+    const boom=
+        document.getElementById(
+            "planetExplosion"
+        );
+
+    boom.classList.remove("active");
+
+    void boom.offsetWidth;
+
+    boom.classList.add("active");
+
+
+    /* PLANETS FLY */
+
+    planets.forEach((planet,index)=>{
+
+        let x,y;
+
+
+        if(index===0){
+
+            x=-360;
+            y=190;
+
+        }
+        else if(index===1){
+
+            x=360;
+            y=-190;
+
+        }
+        else if(index===2){
+
+            x=-180;
+            y=-260;
+
+        }
+        else{
+
+            x=270;
+            y=250;
+
+        }
+
+
+        planet.style.transform=
+            `translate(${x}px,${y}px)
+             rotate(1000deg)
+             scale(.02)`;
+
+
+        planet.style.opacity="0";
+
+        planet.style.filter=
+            "brightness(5)";
+
+    });
+
+
+    createDebris();
+
+}
+
+
+/* =========================
+   DEBRIS
+========================= */
+
+function createDebris(){
+
+    for(let i=0;i<130;i++){
+
+        const p=
+            document.createElement(
+                "div"
+            );
+
+        p.className=
+            "explosion-particle";
+
+
+        p.style.left=
+            (50+(
+                Math.random()*8-4
+            ))+"vw";
+
+
+        p.style.top=
+            (43+(
+                Math.random()*8-4
+            ))+"vh";
+
+
+        const angle=
+            Math.random()*
+            Math.PI*2;
+
+
+        const distance=
+            120+
+            Math.random()*600;
+
+
+        const x=
+            Math.cos(angle)*
+            distance;
+
+
+        const y=
+            Math.sin(angle)*
+            distance;
+
+
+        p.style.setProperty(
+            "--x",
+            x+"px"
+        );
+
+        p.style.setProperty(
+            "--y",
+            y+"px"
+        );
+
+
+        const size=
+            3+
+            Math.random()*12;
+
+
+        p.style.width=
+            size+"px";
+
+        p.style.height=
+            size+"px";
+
+
+        const colors=[
+            "#ffffff",
+            "#5eeaff",
+            "#a855ff",
+            "#ffd000",
+            "#ff6a00",
+            "#ff2500"
+        ];
+
+
+        p.style.background=
+            colors[
+                Math.floor(
+                    Math.random()*
+                    colors.length
+                )
+            ];
+
+
+        document.body.appendChild(p);
+
+
+        setTimeout(()=>{
+
+            p.remove();
+
+        },1600);
+
     }
+
+}
+
+
+/* =========================
+   LIGHTNING
+========================= */
+
+function lightningStrike(){
+
+    const bolts=
+        document.querySelectorAll(
+            ".lightning"
+        );
+
+
+    const bolt=
+        bolts[
+            Math.floor(
+                Math.random()*
+                bolts.length
+            )
+        ];
+
+
+    bolt.style.opacity="1";
+
+
+    setTimeout(()=>{
+
+        bolt.style.opacity="0";
+
+    },100);
+
+}
+
+
+/* =========================
+   CONTINUOUS LIGHTNING
+========================= */
+
+setInterval(()=>{
+
+    if(
+        document.body.classList
+        .contains("awakened")
+    ){
+
+        if(Math.random()>.25){
+
+            lightningStrike();
+
+        }
+
+    }
+
+},650);
+
+
+/* =========================
+   THUNDER SOUND
+========================= */
+
+function playThunder(){
+
+    const AudioContext=
+        window.AudioContext ||
+        window.webkitAudioContext;
+
+
+    if(!AudioContext) return;
+
+
+    const audio=
+        new AudioContext();
+
+
+    const duration=1.7;
+
+
+    const buffer=
+        audio.createBuffer(
+            1,
+            audio.sampleRate*
+            duration,
+            audio.sampleRate
+        );
+
+
+    const data=
+        buffer.getChannelData(0);
+
+
+    for(
+        let i=0;
+        i<data.length;
+        i++
+    ){
+
+        const time=
+            i/audio.sampleRate;
+
+
+        const envelope=
+            Math.exp(-time*2.2);
+
+
+        const rumble=
+            Math.sin(time*38)*.45;
+
+
+        const deep=
+            Math.sin(time*62)*.3;
+
+
+        const noise=
+            Math.random()*2-1;
+
+
+        data[i]=
+            (
+                noise*.55+
+                rumble+
+                deep
+            )*
+            envelope;
+
+    }
+
+
+    const source=
+        audio.createBufferSource();
+
+
+    source.buffer=buffer;
+
+
+    const filter=
+        audio.createBiquadFilter();
+
+
+    filter.type="lowpass";
+
+    filter.frequency.value=190;
+
+
+    const gain=
+        audio.createGain();
+
+
+    gain.gain.value=.8;
+
+
+    source
+        .connect(filter)
+        .connect(gain)
+        .connect(
+            audio.destination
+        );
+
+
+    source.start();
+
 }
 
 </script>
