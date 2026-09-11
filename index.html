@@ -1,1006 +1,221 @@
+
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Love Battle</title>
-
-    <style>
-        * {
-            box-sizing: border-box;
-        }
-
-        body {
-            margin: 0;
-            height: 100vh;
-            background: #080812;
-            color: white;
-            font-family: Arial, sans-serif;
-            overflow: hidden;
-        }
-
-        h1 {
-            text-align: center;
-            margin-top: 25px;
-            color: #ff65ae;
-            font-size: 34px;
-        }
-
-        .arena {
-            position: absolute;
-            width: 80%;
-            max-width: 850px;
-            height: 400px;
-            left: 50%;
-            top: 52%;
-            transform: translate(-50%, -50%);
-            border: 4px solid #ff65ae;
-            border-radius: 15px;
-            background: linear-gradient(#171727, #0b0b14);
-            box-shadow: 0 0 30px #ff65ae55;
-            overflow: hidden;
-        }
-
-        .floor {
-            position: absolute;
-            bottom: 55px;
-            left: 5%;
-            width: 90%;
-            height: 3px;
-            background: #ff65ae;
-            box-shadow: 0 0 10px #ff65ae;
-        }
-
-        /* HP */
-        .hp {
-            position: absolute;
-            top: 20px;
-            width: 180px;
-            height: 18px;
-            border: 2px solid white;
-            border-radius: 10px;
-            overflow: hidden;
-        }
-
-        .hpbar {
-            height: 100%;
-            width: 100%;
-            transition: width 0.3s;
-        }
-
-        #heroHPBox {
-            left: 25px;
-        }
-
-        #enemyHPBox {
-            right: 25px;
-        }
-
-        #heroHP {
-            background: #45eaff;
-        }
-
-        #enemyHP {
-            background: #ff4b6e;
-        }
-
-        .label {
-            position: absolute;
-            top: 42px;
-            font-size: 13px;
-        }
-
-        #heroLabel {
-            left: 25px;
-        }
-
-        #enemyLabel {
-            right: 25px;
-        }
-
-        /* STICKMAN */
-        .stickman {
-            position: absolute;
-            width: 70px;
-            height: 150px;
-            bottom: 58px;
-        }
-
-        #hero {
-            left: 13%;
-        }
-
-        #enemy {
-            right: 13%;
-        }
-
-        .head {
-            position: absolute;
-            width: 38px;
-            height: 38px;
-            border: 4px solid white;
-            border-radius: 50%;
-            left: 16px;
-            top: 0;
-        }
-
-        .body {
-            position: absolute;
-            width: 4px;
-            height: 65px;
-            background: white;
-            left: 34px;
-            top: 38px;
-        }
-
-        .arm {
-            position: absolute;
-            width: 48px;
-            height: 4px;
-            background: white;
-            top: 55px;
-            transform-origin: left center;
-        }
-
-        .leftArm {
-            left: 34px;
-            transform: rotate(145deg);
-        }
-
-        .rightArm {
-            left: 34px;
-            transform: rotate(35deg);
-        }
-
-        .leg {
-            position: absolute;
-            width: 52px;
-            height: 4px;
-            background: white;
-            top: 100px;
-            transform-origin: left center;
-        }
-
-        .leftLeg {
-            left: 34px;
-            transform: rotate(120deg);
-        }
-
-        .rightLeg {
-            left: 34px;
-            transform: rotate(60deg);
-        }
-
-        #enemy .leftArm,
-        #enemy .rightArm,
-        #enemy .leftLeg,
-        #enemy .rightLeg {
-            transform-origin: right center;
-        }
-
-        #enemy .leftArm {
-            transform: rotate(35deg);
-        }
-
-        #enemy .rightArm {
-            transform: rotate(145deg);
-        }
-
-        #enemy .leftLeg {
-            transform: rotate(60deg);
-        }
-
-        #enemy .rightLeg {
-            transform: rotate(120deg);
-        }
-
-        /* FIGHTING */
-        .fighting .leftArm {
-            animation: leftPunch 0.35s infinite alternate;
-        }
-
-        .fighting .rightArm {
-            animation: rightPunch 0.35s infinite alternate;
-        }
-
-        .fighting .leftLeg {
-            animation: leftKick 0.5s infinite alternate;
-        }
-
-        .fighting .rightLeg {
-            animation: rightKick 0.5s infinite alternate;
-        }
-
-        @keyframes leftPunch {
-            from {
-                transform: rotate(145deg);
-            }
-
-            to {
-                transform: rotate(90deg);
-            }
-        }
-
-        @keyframes rightPunch {
-            from {
-                transform: rotate(35deg);
-            }
-
-            to {
-                transform: rotate(5deg);
-            }
-        }
-
-        @keyframes leftKick {
-            from {
-                transform: rotate(120deg);
-            }
-
-            to {
-                transform: rotate(145deg);
-            }
-        }
-
-        @keyframes rightKick {
-            from {
-                transform: rotate(60deg);
-            }
-
-            to {
-                transform: rotate(35deg);
-            }
-        }
-
-        /* ATTACK */
-        .attack {
-            animation: attack 0.3s ease;
-        }
-
-        @keyframes attack {
-            0% {
-                transform: translateX(0);
-            }
-
-            50% {
-                transform: translateX(35px);
-            }
-
-            100% {
-                transform: translateX(0);
-            }
-        }
-
-        .enemyAttack {
-            animation: enemyAttack 0.3s ease;
-        }
-
-        @keyframes enemyAttack {
-            0% {
-                transform: translateX(0);
-            }
-
-            50% {
-                transform: translateX(-35px);
-            }
-
-            100% {
-                transform: translateX(0);
-            }
-        }
-
-        /* HIT */
-        .hit {
-            animation: hit 0.25s;
-        }
-
-        @keyframes hit {
-            0%, 100% {
-                filter: brightness(1);
-            }
-
-            50% {
-                filter: brightness(4);
-            }
-        }
-
-        /* DEATH */
-        .dead {
-            animation: fall 1.5s forwards;
-        }
-
-        @keyframes fall {
-            0% {
-                transform: rotate(0deg) translateY(0);
-            }
-
-            100% {
-                transform: rotate(90deg) translateY(65px);
-                opacity: 0.2;
-            }
-        }
-
-
-        /* =========================================
-           CENTER MESSAGE
-        ========================================= */
-
-        #message {
-            position: absolute;
-
-            top: 50%;
-            left: 50%;
-
-            transform: translate(-50%, -50%);
-
-            width: 80%;
-            max-width: 600px;
-
-            text-align: center;
-
-            color: #ffb3d7;
-
-            font-size: 19px;
-            font-weight: bold;
-
-            line-height: 1.6;
-
-            background: rgba(8, 8, 18, 0.94);
-
-            padding: 25px 30px;
-
-            border: 2px solid #ff65ae;
-            border-radius: 15px;
-
-            box-shadow:
-                0 0 15px #ff65ae,
-                inset 0 0 20px #ff65ae22;
-
-            opacity: 0;
-            visibility: hidden;
-
-            z-index: 20;
-
-            transition:
-                opacity 0.8s ease,
-                visibility 0.8s ease;
-        }
-
-        #message.show {
-            opacity: 1;
-            visibility: visible;
-        }
-
-
-        /* =========================================
-           MESSAGE TEXT ANIMATION
-        ========================================= */
-
-        #messageText {
-            min-height: 70px;
-
-            display: flex;
-            align-items: center;
-            justify-content: center;
-
-            animation: textAppear 0.7s ease;
-        }
-
-        #messageText.change {
-            animation: textChange 0.6s ease;
-        }
-
-        @keyframes textAppear {
-
-            0% {
-                opacity: 0;
-                transform: translateY(20px) scale(0.95);
-            }
-
-            100% {
-                opacity: 1;
-                transform: translateY(0) scale(1);
-            }
-
-        }
-
-        @keyframes textChange {
-
-            0% {
-                opacity: 0;
-                transform: translateY(25px);
-            }
-
-            100% {
-                opacity: 1;
-                transform: translateY(0);
-            }
-
-        }
-
-
-        /* =========================================
-           NEXT BUTTON
-        ========================================= */
-
-        #nextButton {
-
-            margin-top: 18px;
-
-            padding: 10px 28px;
-
-            border: 2px solid #ff65ae;
-            border-radius: 25px;
-
-            background: #ff65ae;
-
-            color: white;
-
-            font-size: 15px;
-            font-weight: bold;
-
-            cursor: pointer;
-
-            box-shadow: 0 0 15px #ff65ae88;
-
-            transition:
-                transform 0.2s,
-                box-shadow 0.2s,
-                background 0.2s;
-        }
-
-        #nextButton:hover {
-
-            transform: scale(1.08);
-
-            box-shadow:
-                0 0 25px #ff65ae,
-                0 0 40px #ff65ae55;
-        }
-
-        #nextButton:active {
-
-            transform: scale(0.95);
-        }
-
-
-        /* HEARTS */
-
-        .heart {
-            position: absolute;
-            color: #ff65ae;
-            font-size: 25px;
-
-            animation: floatHeart 2s infinite;
-        }
-
-        @keyframes floatHeart {
-
-            0% {
-                transform: translateY(0) scale(1);
-                opacity: 1;
-            }
-
-            100% {
-                transform: translateY(-80px) scale(1.5);
-                opacity: 0;
-            }
-
-        }
-
-        /* =========================================
-           SPECIAL KAMEHAMEHA ATTACK
-        ========================================= */
-
-        #specialAttack {
-            position: absolute;
-            left: 50%;
-            bottom: 25px;
-            transform: translateX(-50%);
-            z-index: 20;
-            padding: 11px 22px;
-            border: 2px solid #66ccff;
-            border-radius: 25px;
-            background: linear-gradient(135deg, #087cff, #66eaff);
-            color: white;
-            font-size: 14px;
-            font-weight: bold;
-            cursor: pointer;
-            box-shadow: 0 0 15px #66ccff, 0 0 30px #087cff88;
-        }
-
-        #specialAttack:hover {
-            transform: translateX(-50%) scale(1.08);
-            box-shadow: 0 0 25px #66ccff, 0 0 45px #087cff;
-        }
-
-        #specialAttack:disabled {
-            opacity: 0.45;
-            cursor: not-allowed;
-        }
-
-        .kameCharge {
-            animation: kameCharge 0.8s ease-in-out infinite alternate;
-            filter: drop-shadow(0 0 12px #66ccff);
-        }
-
-        .kameBeam {
-            position: absolute;
-            left: 20%;
-            top: 48%;
-            width: 0;
-            height: 18px;
-            border-radius: 50%;
-            background: #e9ffff;
-            box-shadow: 0 0 12px #fff, 0 0 28px #66ccff, 0 0 55px #087cff;
-            z-index: 15;
-            pointer-events: none;
-            animation: kameBeam 0.55s ease-out forwards;
-        }
-
-        .kameFlash {
-            position: absolute;
-            left: 50%;
-            top: 50%;
-            width: 30px;
-            height: 30px;
-            border-radius: 50%;
-            background: white;
-            box-shadow: 0 0 25px white, 0 0 60px #66ccff;
-            transform: translate(-50%, -50%);
-            z-index: 14;
-            pointer-events: none;
-            animation: kameFlash 0.45s ease-out forwards;
-        }
-
-        @keyframes kameCharge {
-            from { transform: scale(1); }
-            to { transform: scale(1.08); }
-        }
-
-        @keyframes kameBeam {
-            0% { width: 0; opacity: 0; }
-            20% { opacity: 1; }
-            100% { width: 70%; opacity: 0; }
-        }
-
-        @keyframes kameFlash {
-            0% { transform: translate(-50%, -50%) scale(0.2); opacity: 1; }
-            100% { transform: translate(-50%, -50%) scale(9); opacity: 0; }
-        }
-
-        @media screen and (max-width: 600px) {
-            #specialAttack {
-                bottom: 18px;
-                padding: 9px 17px;
-                font-size: 12px;
-            }
-        }
-
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Invitation 💌</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-family: Arial, sans-serif;
+      background: linear-gradient(135deg, #ffd6e7, #ffeef5);
+      overflow: hidden;
+    }
+
+    .card {
+      background: white;
+      width: 90%;
+      max-width: 450px;
+      padding: 40px 25px;
+      text-align: center;
+      border-radius: 25px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+    }
+
+    .heart {
+      font-size: 60px;
+      animation: heartbeat 1.2s infinite;
+    }
+
+    h1 {
+      color: #ff4f81;
+      margin-bottom: 10px;
+    }
+
+    p {
+      color: #555;
+      font-size: 18px;
+      line-height: 1.5;
+    }
+
+    .buttons {
+      margin-top: 30px;
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+    }
+
+    button {
+      border: none;
+      padding: 13px 28px;
+      font-size: 17px;
+      border-radius: 30px;
+      cursor: pointer;
+      transition: 0.2s;
+    }
+
+    #yes {
+      background: #ff4f81;
+      color: white;
+    }
+
+    #yes:hover {
+      transform: scale(1.1);
+      background: #ff2f6d;
+    }
+
+    #no {
+      background: #ddd;
+      color: #333;
+      position: relative;
+    }
+
+    .success {
+      display: none;
+    }
+
+    .success h2 {
+      color: #ff4f81;
+      font-size: 30px;
+    }
+
+    @keyframes heartbeat {
+      0%, 100% {
+        transform: scale(1);
+      }
+      50% {
+        transform: scale(1.15);
+      }
+    }
+
+    .floating-heart {
+      position: absolute;
+      bottom: -30px;
+      font-size: 25px;
+      animation: floatUp 5s linear infinite;
+      opacity: 0.7;
+    }
+
+    @keyframes floatUp {
+      from {
+        transform: translateY(0);
+        opacity: 0;
+      }
+
+      20% {
+        opacity: 0.7;
+      }
+
+      to {
+        transform: translateY(-110vh);
+        opacity: 0;
+      }
+    }
+  </style>
 </head>
-
 
 <body>
 
-    <h1>Man vs. self </h1>
+  <div class="card">
 
+    <div id="invitation">
 
-    <div class="arena">
+      <div class="heart">💌</div>
 
-        <!-- HERO HP -->
-        <div id="heroHPBox" class="hp">
-            <div id="heroHP" class="hpbar"></div>
-        </div>
+      <h1>SUP</h1>
 
+      <p>
+        Hey! bro I have question for you... 🥰
+      </p>
 
-        <!-- ENEMY HP -->
-        <div id="enemyHPBox" class="hp">
-            <div id="enemyHP" class="hpbar"></div>
-        </div>
+      <p>
+        are you gay? 🌈
+      </p>
 
-
-        <!-- LABELS -->
-        <div id="heroLabel" class="label">
-              CALI
-        </div>
-
-        <div id="enemyLabel" class="label">
-            FUTURE 💔
-        </div>
-
-
-        <!-- HERO -->
-        <div id="hero" class="stickman fighting">
-
-            <div class="head"></div>
-
-            <div class="body"></div>
-
-            <div class="arm leftArm"></div>
-            <div class="arm rightArm"></div>
-
-            <div class="leg leftLeg"></div>
-            <div class="leg rightLeg"></div>
-
-        </div>
-
-
-        <!-- ENEMY -->
-        <div id="enemy" class="stickman fighting">
-
-            <div class="head"></div>
-
-            <div class="body"></div>
-
-            <div class="arm leftArm"></div>
-            <div class="arm rightArm"></div>
-
-            <div class="leg leftLeg"></div>
-            <div class="leg rightLeg"></div>
-
-        </div>
-
-
-        <!-- FLOOR -->
-        <div class="floor"></div>
-
-
-        <!-- =====================================
-             CENTER MESSAGE
-        ====================================== -->
-
-        <div id="message">
-
-            <div id="messageText">
-                I gave everything I had...
-            </div>
-
-            <button id="nextButton">
-                NEXT ❤️
-            </button>
-
-        </div>
-
-        <button id="specialAttack">⚡Use to survice</button>
+      <div class="buttons">
+        <button id="yes" onclick="sayYes()">YES 💗</button>
+        <button id="no" onmouseover="moveNo()">NO 😭</button>
+      </div>
 
     </div>
 
+    <div id="success" class="success">
 
-    <script>
+      <div class="heart">💖</div>
 
-        /* =========================================
-           GAME VARIABLES
-        ========================================= */
+      <h2>YAY!!! 🥰</h2>
 
-        let heroHP = 100;
-        let enemyHP = 100;
+      <p>
+        I knew you'd say gay! 😌
+      </p>
 
-        let battleOver = false;
-        let turn = 0;
+      <p>
+        bwhahahahah 🌹✨
+      </p>
 
+    </div>
 
-        const hero = document.getElementById("hero");
-        const enemy = document.getElementById("enemy");
+  </div>
 
-        const heroBar = document.getElementById("heroHP");
-        const enemyBar = document.getElementById("enemyHP");
+  <script>
 
-        const message = document.getElementById("message");
+    const noButton = document.getElementById("no");
 
-        const messageText = document.getElementById("messageText");
+    function moveNo() {
 
-        const nextButton = document.getElementById("nextButton");
+      // Make the button move around the screen
+      const maxX = window.innerWidth - noButton.offsetWidth - 20;
+      const maxY = window.innerHeight - noButton.offsetHeight - 20;
 
+      const randomX = Math.max(10, Math.random() * maxX);
+      const randomY = Math.max(10, Math.random() * maxY);
 
-        /* =========================================
-           MESSAGE SENTENCES
-        ========================================= */
+      noButton.style.position = "fixed";
+      noButton.style.left = randomX + "px";
+      noButton.style.top = randomY + "px";
+    }
 
-        const messages = [
+    function sayYes() {
 
-            "I gave everything I had...",
+      document.getElementById("invitation").style.display = "none";
+      document.getElementById("success").style.display = "block";
 
-            "I fought until the very end.",
+      createHearts();
+    }
 
-            "BUT...",
+    function createHearts() {
 
-            "I, cali ready to delve . "
+      for (let i = 0; i < 25; i++) {
 
-        ];
+        const heart = document.createElement("div");
 
+        heart.className = "floating-happy";
+        heart.innerHTML = "😌";
 
-        let messageIndex = 0;
+        heart.style.left = Math.random() * 100 + "vw";
+        heart.style.animationDelay = Math.random() * 3 + "s";
+        heart.style.fontSize = (15 + Math.random() * 25) + "px";
 
+        document.body.appendChild(heart);
 
+        setTimeout(() => {
+          heart.remove();
+        }, 6000);
+      }
+    }
 
-        const specialAttack = document.getElementById("specialAttack");
-        let specialReady = true;
-
-        /* =========================================
-           KAMEHAMEHA SPECIAL ATTACK
-        ========================================= */
-
-        function kamehameha() {
-
-            if (battleOver || !specialReady || enemyHP <= 0) return;
-
-            specialReady = false;
-            specialAttack.disabled = true;
-            specialAttack.textContent = "💥 CHARGING...";
-
-            hero.classList.add("kameCharge");
-
-            setTimeout(function () {
-
-                hero.classList.remove("kameCharge");
-
-                const beam = document.createElement("div");
-                beam.className = "kameBeam";
-                document.querySelector(".arena").appendChild(beam);
-
-                const flash = document.createElement("div");
-                flash.className = "kameFlash";
-                document.querySelector(".arena").appendChild(flash);
-
-                enemy.classList.add("hit");
-
-                enemyHP -= 35;
-
-                if (enemyHP < 0) enemyHP = 0;
-
-                enemyBar.style.width = enemyHP + "%";
-
-                setTimeout(function () {
-                    enemy.classList.remove("hit");
-                    beam.remove();
-                    flash.remove();
-                }, 600);
-
-                if (enemyHP <= 0) {
-                    enemyDies();
-                }
-
-                setTimeout(function () {
-                    specialReady = true;
-                    specialAttack.disabled = false;
-                    specialAttack.textContent = "use it to survive";
-                }, 3000);
-
-            }, 800);
-        }
-
-        specialAttack.addEventListener("click", kamehameha);
-
-
-        /* =========================================
-           HERO ATTACK
-        ========================================= */
-
-        function heroAttack() {
-
-            if (battleOver) return;
-
-            hero.classList.add("attack");
-
-            enemy.classList.add("hit");
-
-
-            setTimeout(function () {
-
-                hero.classList.remove("attack");
-
-                enemy.classList.remove("hit");
-
-            }, 300);
-
-
-            enemyHP -= 8;
-
-
-            if (enemyHP < 0) {
-                enemyHP = 0;
-            }
-
-
-            enemyBar.style.width = enemyHP + "%";
-
-
-            if (enemyHP <= 0) {
-
-                enemyDies();
-
-            }
-
-        }
-
-
-        /* =========================================
-           ENEMY ATTACK
-        ========================================= */
-
-        function enemyAttack() {
-
-            if (battleOver) return;
-
-            enemy.classList.add("enemyAttack");
-
-            hero.classList.add("hit");
-
-
-            setTimeout(function () {
-
-                enemy.classList.remove("enemyAttack");
-
-                hero.classList.remove("hit");
-
-            }, 300);
-
-
-            heroHP -= 20;
-
-
-            if (heroHP < 0) {
-                heroHP = 0;
-            }
-
-
-            heroBar.style.width = heroHP + "%";
-
-
-            if (heroHP <= 0) {
-
-                heroDies();
-
-            }
-
-        }
-
-
-        /* =========================================
-           HERO DIES
-        ========================================= */
-
-        function heroDies() {
-
-            if (battleOver) return;
-
-
-            battleOver = true;
-
-
-            hero.classList.remove("fighting");
-
-            hero.classList.add("dead");
-
-
-            /* Wait for death animation */
-
-            setTimeout(function () {
-
-                message.classList.add("show");
-
-                messageIndex = 0;
-
-                messageText.textContent = messages[messageIndex];
-
-                nextButton.textContent = "Next";
-
-            }, 800);
-
-        }
-
-
-        /* =========================================
-           ENEMY DIES
-        ========================================= */
-
-        function enemyDies() {
-
-            if (battleOver) return;
-
-
-            battleOver = true;
-
-
-            enemy.classList.remove("fighting");
-
-            enemy.classList.add("dead");
-
-        }
-
-
-        /* =========================================
-           NEXT ATTACK
-        ========================================= */
-
-        function nextAttack() {
-
-            if (battleOver) return;
-
-
-            turn++;
-
-
-            if (turn % 2 === 1) {
-
-                heroAttack();
-
-            } else {
-
-                enemyAttack();
-
-            }
-
-
-            if (!battleOver) {
-
-                setTimeout(nextAttack, 650);
-
-            }
-
-        }
-
-
-        /* =========================================
-           NEXT MESSAGE BUTTON
-        ========================================= */
-
-        nextButton.addEventListener("click", function () {
-
-            /* If there are still messages */
-
-            if (messageIndex < messages.length - 1) {
-
-                messageIndex++;
-
-
-                /* Remove animation */
-
-                messageText.classList.remove("change");
-
-
-                /* Force browser to restart animation */
-
-                void messageText.offsetWidth;
-
-
-                /* Add animation */
-
-                messageText.classList.add("change");
-
-
-                /* Change sentence */
-
-                messageText.textContent =
-                    messages[messageIndex];
-
-
-                /* Last sentence */
-
-                if (messageIndex === messages.length - 1) {
-
-                    nextButton.textContent = "Continue";
-
-                }
-
-            }
-
-            else {
-
-                /* Final button */
-
-                message.classList.remove("show");
-
-            }
-
-        });
-
-
-        /* =========================================
-           START BATTLE
-        ========================================= */
-
-        setTimeout(nextAttack, 1200);
-
-    </script>
+  </script>
 
 </body>
 </html>
+
